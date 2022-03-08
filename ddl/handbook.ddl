@@ -64,7 +64,7 @@ create table `user`
 
     constraint `fk_user_pc` foreign key (`pc_fk`) references `pc` (`pc_id`)
         on update cascade on delete restrict
-) comment 'Blog user or author';
+) comment 'User';
 
 drop table if exists `post`;
 create table `post`
@@ -77,7 +77,6 @@ create table `post`
     `body`               text                                    not null,
     `upvotes`            int                                     not null,
     `downvotes`          int                                     not null,
-    `best_solution`      boolean                                 not null,
 
     -- auditable
     `created_date`       timestamp   default current_timestamp(),
@@ -100,6 +99,7 @@ create table `comment`
     `comment_id`         int  auto_increment primary key,
     `user_fk`            int                                     not null,
     `post_fk`            int                                     null,
+    `pc_fk`              int                                     null,
     `body`               text                                    not null,
     `upvotes`            int                                     not null,
     `downvotes`          int                                     not null,
@@ -114,7 +114,9 @@ create table `comment`
     constraint `fk_post_comment` foreign key (`post_fk`) references `post` (`post_id`)
         on update cascade on delete cascade,
     constraint `fk_user_comment` foreign key (`user_fk`) references `user` (`user_id`)
-        on update cascade on delete cascade
+        on update cascade on delete cascade,
+    constraint `fk_comment_pc` foreign key (`pc_fk`) references `pc` (`pc_id`)
+        on update cascade on delete restrict
 ) comment 'User comment on a post';
 
 drop table if exists `user_role`;
