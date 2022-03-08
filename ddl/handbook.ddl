@@ -75,6 +75,9 @@ create table `post`
     `pc_fk`              int                                     not null,
     `title`              varchar(255)                            not null,
     `body`               text                                    not null,
+    `upvotes`            int                                     not null,
+    `downvotes`          int                                     not null,
+    `best_solution`      boolean                                 not null,
 
     -- auditable
     `created_date`       timestamp   default current_timestamp(),
@@ -94,10 +97,13 @@ create table `post`
 drop table if exists `comment`;
 create table `comment`
 (
-    `comment_id`         int auto_increment primary key,
-    `user_fk`            int  not null,
-    `post_fk`            int  null,
-    `body`               text not null,
+    `comment_id`         int  auto_increment primary key,
+    `user_fk`            int                                     not null,
+    `post_fk`            int                                     null,
+    `body`               text                                    not null,
+    `upvotes`            int                                     not null,
+    `downvotes`          int                                     not null,
+    `best_solution`      boolean                                 not null,
 
     -- auditable
     `created_date`       timestamp   default current_timestamp(),
