@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -30,8 +31,8 @@ public class PCServiceImpl implements PCService {
     }
 
     @Override
-    public Optional<PC> findById(Integer pcId) {
-        return pcRepository.findById(pcId);
+    public PC findById(Integer pcId) {
+        return pcRepository.findById(pcId).orElseThrow(() -> new NoSuchElementException("PCServiceImpl.pc.notFound"));
     }
 
     @Override
