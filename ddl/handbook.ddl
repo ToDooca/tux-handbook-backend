@@ -32,7 +32,7 @@ create table `role`
 drop table if exists `pc`;
 create table `pc`
 (
-    `pc_id`        int auto_increment primary key,
+    `pc_id`             int auto_increment primary key,
     `os`                varchar(64) not null,
     `kernel`            varchar(64) not null,
     `cpu`               varchar(64) not null,

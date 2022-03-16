@@ -24,12 +24,13 @@ public class User extends Auditable implements UserDetails {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "user_id")
-    private Long id;
+    private Integer id;
     private String username;
     private String password;
     private String email;
     private String about;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @ToString.Exclude
     private List<PC> pcs;
     @ManyToMany(fetch = FetchType.EAGER)
     @JsonIgnore

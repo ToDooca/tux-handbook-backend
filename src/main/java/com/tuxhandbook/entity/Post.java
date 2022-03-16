@@ -16,7 +16,7 @@ public class Post extends Auditable{
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "post_id")
-    private Long id;
+    private int id;
     @ManyToOne
     private User user;
     @ManyToOne
@@ -25,6 +25,6 @@ public class Post extends Auditable{
     private PC pc;
     private String title;
     private String body;
-    private int upvotes;
-    private int downvotes;
+    private Integer upvotes;
+    private Integer downvotes;
 }

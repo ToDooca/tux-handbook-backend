@@ -16,11 +16,11 @@ public class PC extends Auditable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "pc_id")
-    private Long id;
+    private Integer id;
     private String os;
     private String kernel;
     private String cpu;
-    private int ram;
+    private Integer ram;
     @ManyToOne
     @JoinColumn(name = "user_fk", referencedColumnName = "user_id")
     private User user;

@@ -18,15 +18,13 @@ public interface UserService extends UserDetailsService {
 
     User findByUsername(String username);
 
-    void deleteById(Long userId);
-
     List<Role> findAllRolesById(Integer userId);
 
     List<Role> addRolesById(Integer userId, List<Role> roles);
 
     List<Role> setRolesById(Integer userId, List<Role> roles);
-
+    
     List<Role> deleteRolesById(Integer userId, List<Role> roles);
 
-
+    void deleteById(Integer userId);
 }

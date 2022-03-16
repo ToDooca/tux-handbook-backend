@@ -17,6 +17,6 @@ public class Category extends Auditable{
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "category_id")
-    private Long id;
+    private Integer id;
     private String name;
 }
