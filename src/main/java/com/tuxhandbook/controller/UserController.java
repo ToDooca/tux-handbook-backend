@@ -28,11 +28,7 @@ public class UserController {
     @GetMapping("/{userId}")
     @ApiOperation(value = "", nickname = "getUserById")
     public ResponseEntity<User> getUserById(@PathVariable String userId) {
-        try {
-            return ResponseEntity.ok(userService.findById(Integer.parseInt(userId)));
-        } catch (NumberFormatException e) {
-            return ResponseEntity.ok(userService.findByUsername(userId));
-        }
+        return ResponseEntity.ok(userService.findById(Integer.parseInt(userId)));
     }
 
     @PostMapping

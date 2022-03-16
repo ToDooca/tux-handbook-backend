@@ -6,10 +6,13 @@ import com.tuxhandbook.repository.UserRepository;
 import com.tuxhandbook.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -33,12 +36,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findById(Integer userId) {
-        return null;
-    }
-
-    @Override
-    public User findByUsername(String username) {
-        return null;
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new NoSuchElementException("UserServiceImpl.user.notFound"));
     }
 
     @Override

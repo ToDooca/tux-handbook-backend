@@ -5,6 +5,7 @@ import com.tuxhandbook.entity.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService extends UserDetailsService {
 
@@ -15,8 +16,6 @@ public interface UserService extends UserDetailsService {
     User update(User user);
 
     User findById(Integer userId);
-
-    User findByUsername(String username);
 
     List<Role> findAllRolesById(Integer userId);
 
