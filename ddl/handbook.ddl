@@ -38,12 +38,16 @@ create table `pc`
     `cpu`               varchar(64) not null,
     `gpu`               varchar(64) not null,
     `ram`               int         not null,
+    `user_fk`           int         not null,
 
     -- auditable
     `created_date`       timestamp   default current_timestamp(),
     `last_modified_by`   varchar(32) default 'system',
     `last_modified_date` timestamp   default current_timestamp(),
-    `record_status`      int         default 1
+    `record_status`      int         default 1,
+
+    constraint `fk_pc_user` foreign key (`user_fk`) references `user` (`user_id`)
+        on update cascade on delete cascade
 ) comment 'User PC that the post applies for';
 
 drop table if exists `user`;

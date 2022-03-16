@@ -21,4 +21,7 @@ public class PC extends Auditable {
     private String kernel;
     private String cpu;
     private int ram;
+    @ManyToOne
+    @JoinColumn(name = "user_fk", referencedColumnName = "user_id")
+    private User user;
 }
