@@ -8,11 +8,11 @@ public interface PCService {
 
     List<PC> findAll();
 
+    PC findById(Integer pcId);
+
     PC save(PC pc);
 
     PC update(PC pc);
-
-    PC findById(Integer pcId);
 
     void deleteById(Integer pcId);
 }

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -21,6 +20,12 @@ public class PCServiceImpl implements PCService {
     }
 
     @Override
+    public PC findById(Integer pcId) {
+        return pcRepository.findById(pcId)
+                .orElseThrow(() -> new NoSuchElementException("PCServiceImpl.pc.notFound"));
+    }
+
+    @Override
     public PC save(PC pc) {
         return pcRepository.save(pc);
     }
@@ -28,11 +33,6 @@ public class PCServiceImpl implements PCService {
     @Override
     public PC update(PC pc) {
         return pcRepository.save(pc);
-    }
-
-    @Override
-    public PC findById(Integer pcId) {
-        return pcRepository.findById(pcId).orElseThrow(() -> new NoSuchElementException("PCServiceImpl.pc.notFound"));
     }
 
     @Override
