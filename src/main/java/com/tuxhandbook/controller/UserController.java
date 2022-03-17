@@ -6,7 +6,6 @@ import com.tuxhandbook.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +20,8 @@ public class UserController {
 
     @GetMapping
     @ApiOperation(value = "", nickname = "getAllUsers")
-    public ResponseEntity<List<User>> getAllUsers(@RequestParam(name = "q", required = false) Specification<User> specification, @RequestParam(name = "sort", required = false) Sort sort) {
-        return ResponseEntity.ok(userService.findAll());
+    public ResponseEntity<List<User>> getAllUsers(@RequestParam(name = "sort", required = false) Sort sort) {
+        return ResponseEntity.ok(userService.findAll(sort));
     }
 
     @GetMapping("/{userId}")

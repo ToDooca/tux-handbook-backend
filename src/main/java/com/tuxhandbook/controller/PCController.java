@@ -34,7 +34,7 @@ public class PCController {
         return ResponseEntity.status(HttpStatus.CREATED).body(pcService.save(pc));
     }
 
-    @PostMapping
+    @PutMapping
     @ApiOperation(value = "", nickname = "updatePC")
     public ResponseEntity<PC> updatePC(@RequestBody PC pc) {
         return ResponseEntity.ok(pcService.update(pc));

@@ -34,7 +34,7 @@ public class CategoryController {
         return ResponseEntity.status(HttpStatus.CREATED).body(categoryService.save(category));
     }
 
-    @PostMapping
+    @PutMapping
     @ApiOperation(value = "", nickname = "updateCategory")
     public ResponseEntity<Category> updateCategory(@RequestBody Category category) {
         return ResponseEntity.ok(categoryService.update(category));

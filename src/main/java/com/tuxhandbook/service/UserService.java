@@ -2,13 +2,14 @@ package com.tuxhandbook.service;
 
 import com.tuxhandbook.entity.Role;
 import com.tuxhandbook.entity.User;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 
 public interface UserService extends UserDetailsService {
 
-    List<User> findAll();
+    List<User> findAll(Sort sort);
 
     User save(User user);
 

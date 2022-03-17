@@ -5,6 +5,7 @@ import com.tuxhandbook.entity.User;
 import com.tuxhandbook.repository.UserRepository;
 import com.tuxhandbook.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public List<User> findAll() {
+    public List<User> findAll(Sort sort) {
         return userRepository.findAll();
     }
 
