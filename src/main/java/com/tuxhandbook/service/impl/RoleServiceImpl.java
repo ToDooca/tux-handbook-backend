@@ -18,7 +18,7 @@ public class RoleServiceImpl implements RoleService {
     private final RoleRepository roleRepository;
     @Override
     public List<Role> findAll(Sort sort) {
-        return roleRepository.findAll();
+        return roleRepository.findAll(sort == null ? Sort.unsorted() : sort);
     }
 
     @Override

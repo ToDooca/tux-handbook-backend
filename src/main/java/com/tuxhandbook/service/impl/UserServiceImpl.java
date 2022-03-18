@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findAll(Sort sort) {
-        return userRepository.findAll();
+        return userRepository.findAll(sort == null ? Sort.unsorted() : sort);
     }
 
     @Override
