@@ -10,7 +10,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @RequiredArgsConstructor
-public class AuthenticationManager implements org.springframework.security.authentication.AuthenticationManager {
+public class
+AuthenticationManager implements org.springframework.security.authentication.AuthenticationManager {
     private final UserDetailsService userService;
     private final PasswordEncoder passwordEncoder;
 
@@ -20,7 +21,7 @@ public class AuthenticationManager implements org.springframework.security.authe
         String password = (String) authentication.getCredentials();
         User user = (User) userService.loadUserByUsername(username);
 
-        if(!passwordEncoder.matches(password, user.getPassword()))
+        if (!passwordEncoder.matches(password, user.getPassword()))
             throw new BadCredentialsException("Invalid Credentials");
 
         return new UsernamePasswordAuthenticationToken(username, null, user.getRoles());

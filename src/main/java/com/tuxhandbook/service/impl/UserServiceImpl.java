@@ -3,11 +3,15 @@ package com.tuxhandbook.service.impl;
 import com.tuxhandbook.entity.Role;
 import com.tuxhandbook.entity.User;
 import com.tuxhandbook.repository.UserRepository;
+import com.tuxhandbook.security.data.RegisterDTO;
 import com.tuxhandbook.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +21,12 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    public void setPasswordEncoder(@Lazy PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
     public List<User> findAll(Sort sort) {
@@ -74,5 +84,20 @@ public class UserServiceImpl implements UserService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("User %s not found", username)));
+    }
+
+    @Override
+    public User register(RegisterDTO registerDTO) {
+        User user = new User();
+        user.setUsername(registerDTO.getUsername());
+        user.setPassword(encodePassword(registerDTO.getPassword()));
+        user.setEmail(registerDTO.getEmail());
+        user.setAbout(registerDTO.getAbout());
+
+        return userRepository.save(user);
+    }
+
+    private String encodePassword(String password) {
+        return passwordEncoder.encode(password);
     }
 }

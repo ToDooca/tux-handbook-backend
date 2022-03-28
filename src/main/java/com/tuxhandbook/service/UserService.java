@@ -2,6 +2,7 @@ package com.tuxhandbook.service;
 
 import com.tuxhandbook.entity.Role;
 import com.tuxhandbook.entity.User;
+import com.tuxhandbook.security.data.RegisterDTO;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -26,4 +27,6 @@ public interface UserService extends UserDetailsService {
     List<Role> deleteRolesById(Integer userId, List<Role> roles);
 
     void deleteById(Integer userId);
+
+    User register(RegisterDTO registerDTO);
 }

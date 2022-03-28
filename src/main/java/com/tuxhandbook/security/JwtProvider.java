@@ -12,11 +12,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
-import java.net.http.HttpRequest;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -25,7 +23,6 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class JwtProvider {
-    private final UserDetailsService userDetailsService;
     private static final String HEADER = HttpHeaders.AUTHORIZATION;
     private static final String PREFIX = "Bearer ";
     @Value("${jwt.secret-key:secret}")
@@ -35,6 +32,7 @@ public class JwtProvider {
 
     public String createToken(String username, Collection<? extends GrantedAuthority> roles) {
         Date now = new Date();
+        
         Date validity = new Date(now.getTime() + validityInMilliseconds);
         return Jwts.builder()
                 .setSubject(username)
@@ -48,16 +46,20 @@ public class JwtProvider {
 
     public Authentication resolveToken(HttpServletRequest httpServletRequest) {
         String header = httpServletRequest.getHeader(HEADER);
+
         if (header == null) return null;
         if (!header.startsWith(PREFIX)) return null;
+
         String token = header.substring(PREFIX.length());
         Jws<Claims> decoded = Jwts.parser()
                 .setSigningKey(secretKey)
                 .parseClaimsJws(token);
         Claims claims = decoded.getBody();
+
         if (!claims.getExpiration().before(new Date())) return null;
         String username = claims.get("username", String.class);
         List<String> roles = claims.get("roles", List.class);
+
         return new UsernamePasswordAuthenticationToken(username, null, roles
                 .stream()
                 .map(SimpleGrantedAuthority::new)

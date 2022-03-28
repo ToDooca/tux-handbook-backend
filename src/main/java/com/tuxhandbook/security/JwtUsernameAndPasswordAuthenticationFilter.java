@@ -54,5 +54,4 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
     }
 
 
-
 }
