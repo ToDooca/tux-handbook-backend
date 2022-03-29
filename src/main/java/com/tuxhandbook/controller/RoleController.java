@@ -47,28 +47,4 @@ public class RoleController {
     public void deleteRoleById(@PathVariable Integer roleId) {
         roleService.deleteById(roleId);
     }
-
-    @GetMapping("/{roleId}/users")
-    @ApiOperation(value = "", nickname = "getRoleUsers")
-    public ResponseEntity<List<User>> getRoleUsers(@PathVariable Integer roleId) {
-        return ResponseEntity.ok(roleService.findAllUsersById(roleId));
-    }
-
-    @PostMapping("/{roleId}/users")
-    @ApiOperation(value = "", nickname = "setRoleUsers")
-    public ResponseEntity<List<User>> setRoleUsers(@PathVariable Integer roleId, @RequestBody List<User> users) {
-        return ResponseEntity.ok(roleService.setUsersById(roleId, users));
-    }
-
-    @PutMapping("/{roleId}/users")
-    @ApiOperation(value = "", nickname = "addRoleUsers")
-    public ResponseEntity<List<User>> addRoleUsers(@PathVariable Integer roleId, @RequestBody List<User> users) {
-        return ResponseEntity.ok(roleService.addUsersById(roleId, users));
-    }
-
-    @DeleteMapping("/{roleId}/users")
-    @ApiOperation(value = "", nickname = "deleteRoleUsers")
-    public ResponseEntity<List<User>> deleteRoleUsers(@PathVariable Integer roleId, @RequestBody List<User> users) {
-        return ResponseEntity.ok(roleService.deleteUsersById(roleId, users));
-    }
 }

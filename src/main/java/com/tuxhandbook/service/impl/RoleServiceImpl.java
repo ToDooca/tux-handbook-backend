@@ -40,30 +40,4 @@ public class RoleServiceImpl implements RoleService {
     public void deleteById(Integer roleId) {
         roleRepository.deleteById(roleId);
     }
-
-    @Override
-    public List<User> findAllUsersById(Integer roleId) {
-        return findById(roleId).getUsers();
-    }
-
-    @Override
-    public List<User> addUsersById(Integer roleId, List<User> users) {
-        Role role = findById(roleId);
-        role.getUsers().addAll(users);
-        return roleRepository.save(role).getUsers();
-    }
-
-    @Override
-    public List<User> setUsersById(Integer roleId, List<User> users) {
-        Role role = findById(roleId);
-        role.setUsers(users);
-        return roleRepository.save(role).getUsers();
-    }
-
-    @Override
-    public List<User> deleteUsersById(Integer roleId, List<User> users) {
-        Role role = findById(roleId);
-        role.getUsers().removeAll(users);
-        return roleRepository.save(role).getUsers();
-    }
 }
