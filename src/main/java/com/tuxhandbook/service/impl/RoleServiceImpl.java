@@ -1,7 +1,6 @@
 package com.tuxhandbook.service.impl;
 
 import com.tuxhandbook.entity.Role;
-import com.tuxhandbook.entity.User;
 import com.tuxhandbook.repository.RoleRepository;
 import com.tuxhandbook.service.RoleService;
 import lombok.RequiredArgsConstructor;
