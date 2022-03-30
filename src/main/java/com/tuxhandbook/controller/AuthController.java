@@ -1,7 +1,7 @@
 package com.tuxhandbook.controller;
 
 import com.tuxhandbook.entity.User;
-import com.tuxhandbook.security.data.RegisterDTO;
+import com.tuxhandbook.data.RegisterDTO;
 import com.tuxhandbook.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

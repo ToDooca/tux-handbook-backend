@@ -123,6 +123,20 @@ create table `comment`
         on update cascade on delete restrict
 ) comment 'User comment on a post';
 
+drop table if exists `vote`;
+create table `vote`
+(
+    `vote_id`           int auto_increment primary key,
+    `user_fk`           int                                     not null,
+    `type`              varchar                                 not null,
+
+    -- auditable
+    `created_date`       timestamp   default current_timestamp(),
+    `last_modified_by`   varchar(32) default 'system',
+    `last_modified_date` timestamp   default current_timestamp(),
+    `record_status`      int         default 1
+) comment 'User vote for either comment or a post';
+
 drop table if exists `user_role`;
 create table `user_role`
 (

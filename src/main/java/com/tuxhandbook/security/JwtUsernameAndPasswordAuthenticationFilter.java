@@ -1,7 +1,7 @@
 package com.tuxhandbook.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tuxhandbook.security.data.LoginDTO;
+import com.tuxhandbook.data.LoginDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;

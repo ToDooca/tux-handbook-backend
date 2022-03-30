@@ -2,7 +2,7 @@ package com.tuxhandbook.service;
 
 import com.tuxhandbook.entity.Role;
 import com.tuxhandbook.entity.User;
-import com.tuxhandbook.security.data.RegisterDTO;
+import com.tuxhandbook.data.RegisterDTO;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UserDetailsService;
 

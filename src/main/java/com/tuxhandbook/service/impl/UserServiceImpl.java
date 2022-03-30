@@ -3,7 +3,7 @@ package com.tuxhandbook.service.impl;
 import com.tuxhandbook.entity.Role;
 import com.tuxhandbook.entity.User;
 import com.tuxhandbook.repository.UserRepository;
-import com.tuxhandbook.security.data.RegisterDTO;
+import com.tuxhandbook.data.RegisterDTO;
 import com.tuxhandbook.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

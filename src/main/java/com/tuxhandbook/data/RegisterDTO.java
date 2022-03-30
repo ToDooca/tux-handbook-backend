@@ -1,4 +1,4 @@
-package com.tuxhandbook.security.data;
+package com.tuxhandbook.data;
 
 import lombok.Data;
 
